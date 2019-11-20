@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "/Users/acarvaja/Desktop"
+		},
+		{
+			"path": "/Users/acarvaja/c00-3"
+		},
+		{
+			"path": "/Users/acarvaja/Projects"
+		},
+		{
+			"path": "/Users/acarvaja/Rush"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"unistd.h": "c",
+			"string.h": "c"
+		}
+	}
+}
