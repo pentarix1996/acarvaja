@@ -1,2 +1,1 @@
-# acarvaja
-Mi paso a través de 42 Madrid
+Este es mi paso a través de 42 Madrid
