@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 12:59:51 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/30 01:28:02 by acarvaja         ###   ########.fr       */
+/*   Updated: 2019/12/03 12:33:13 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	t_list          *tmp;
+	t_list	*tmp;
 
 	tmp = *alst;
 	if (!tmp)
