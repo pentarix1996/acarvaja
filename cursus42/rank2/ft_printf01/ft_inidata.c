@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 11:04:18 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/12/03 11:04:55 by acarvaja         ###   ########.fr       */
+/*   Updated: 2019/12/04 19:33:51 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ t_datatype	*resetdata(t_datatype *data)
 {
 	data->fleffield = 0;
 	data->fprecision = 0;
-	data->ftakearglenght = 0;
-	data->ftakeargprecission = 0;
 	data->fzero = 0;
 	data->lenght_arg = 0;
 	data->val_precission = -1;
@@ -34,7 +32,7 @@ t_datatype	*resetdata(t_datatype *data)
 	data->numspaces = 0;
 	data->numzeros = 0;
 	data->dataupexh = 0;
-	data->datapointer = -1;
+	data->datapointer = 0;
 	data->porcent = 0;
 	data->datanbr = 0;
 	data->dataunbr = 0;
@@ -43,5 +41,9 @@ t_datatype	*resetdata(t_datatype *data)
 	data->datachar = 0;
 	data->fischar = 0;
 	data->fplus = 0;
+	data->fpointer = 0;
+	data->fuint = 0;
+	data->fpercent = 0;
+	data->fspace = 0;
 	return (data);
 }

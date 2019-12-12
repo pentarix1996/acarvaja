@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 11:26:52 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/12/03 11:29:39 by acarvaja         ###   ########.fr       */
+/*   Updated: 2019/12/03 19:11:52 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_atoa_lowexh(unsigned long nbr)
 	int		i;
 
 	pos = "0123456789abcdef";
-	result = malloc(sizeof(*result) * 16);
+	result = malloc(sizeof(result) * 16);
 	i = 0;
 	while (nbr >= 16)
 	{

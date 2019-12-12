@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 11:16:45 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/12/03 11:22:04 by acarvaja         ###   ########.fr       */
+/*   Updated: 2019/12/04 18:05:45 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	ft_putchar(char c)
 {
-	if (c)
-		write(1, &c, 1);
+	write(1, &c, 1);
 }
 
 void	ft_putstr(const char *str)
@@ -60,5 +59,10 @@ void	ft_putnbr(int nb, int singneg)
 		}
 	}
 	else
-		write(1, "-2147483648", 11);
+	{
+		if (singneg)
+			write(1, "-2147483648", 11);
+		else
+			write(1, "2147483648", 10);
+	}
 }

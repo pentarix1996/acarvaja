@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 11:20:56 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/12/03 11:27:48 by acarvaja         ###   ########.fr       */
+/*   Updated: 2019/12/04 19:33:27 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ int		is_flag(char flag)
 {
 	return (flag == zero || flag == leffield || flag == takearg
 			|| flag == precision || (flag > '0' && flag <= '9')
-			|| flag == plus);
+			|| flag == plus || flag == space);
 }

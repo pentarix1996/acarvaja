@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 16:42:35 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/12/03 12:15:11 by acarvaja         ###   ########.fr       */
+/*   Updated: 2019/12/04 19:38:13 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	read_flags_takearg(t_datatype *data, va_list ap)
 {
 	if (!data->fprecision)
 	{
-		data->ftakearglenght = 1;
 		data->lenght_arg = va_arg(ap, int);
 		if (data->lenght_arg < 0)
 		{
@@ -29,7 +28,6 @@ void	read_flags_takearg(t_datatype *data, va_list ap)
 		data->val_precission = va_arg(ap, int);
 		if (data->val_precission < 0)
 			data->fprecision = 0;
-		data->ftakeargprecission = 1;
 	}
 }
 
@@ -65,6 +63,8 @@ int		read_flag(t_datatype *data, va_list ap)
 		data->fplus = 1;
 	else if (*data->format == leffield)
 		data->fleffield = 1;
+	else if (*data->format == space)
+		data->fspace = 1;
 	else if (*data->format == zero && !data->fprecision)
 	{
 		data->fzero = 1;

@@ -6,7 +6,7 @@
 #    By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 10:44:50 by acarvaja          #+#    #+#              #
-#    Updated: 2019/12/03 12:23:53 by acarvaja         ###   ########.fr        #
+#    Updated: 2019/12/10 12:29:58 by acarvaja         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIBFT 		= libft/
 NAME		= libftprintf.a
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
-OUT			= test.out
+OUT			= ft_printf.o
 
 all: $(NAME)
 
@@ -62,5 +62,7 @@ fclean: clean
 
 re: fclean all
 
-out:		${HEADS}
-			${CC} ${CFLAGS} ${SRCS} ./$(MAIN) ./$(NAME) -o ${OUT} && ./${OUT}
+out: ${HEADS}
+	${CC} $(CFLAGS) ${SRCS} ./$(MAIN) ./$(NAME) -o ${OUT} && ./${OUT}
+
+bonus: all

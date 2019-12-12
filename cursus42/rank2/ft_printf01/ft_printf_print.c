@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 11:39:07 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/12/03 12:23:20 by acarvaja         ###   ########.fr       */
+/*   Updated: 2019/12/10 12:26:19 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,21 @@ void	print_zeros(t_datatype *data)
 	}
 }
 
-void	ft_printfnbr(t_datatype *data)
+void	ft_printfnbr(t_datatype *data, va_list ap)
 {
 	calc_numspaces(data);
 	if ((!data->fzero && !data->fprecision) ||
 			(data->fzero && data->fprecision && data->val_precission < 0))
-		ft_print_nzp(data);
+		ft_print_nzp(data, ap);
 	else if ((data->fzero && !data->fprecision && !data->fleffield) ||
 			(data->val_precission >= 0 && !data->lenght_arg
 			&& data->fprecision))
-		ft_print_znpl(data);
+		ft_print_znpl(data, ap);
 	else if (data->fprecision && data->val_precission >= 0 && data->lenght_arg
 			&& !data->fleffield)
-		ft_print_pvpla(data);
+		ft_print_pvpla(data, ap);
 	else if (data->fleffield && data->val_precission >= 0 && data->fprecision)
-		ft_print_lvpp(data);
+		ft_print_lvpp(data, ap);
 	else if (data->fzero && data->fleffield)
-		ft_print_zl(data);
+		ft_print_zl(data, ap);
 }

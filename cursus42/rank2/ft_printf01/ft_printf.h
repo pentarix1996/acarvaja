@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 16:22:28 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/12/03 12:22:34 by acarvaja         ###   ########.fr       */
+/*   Updated: 2019/12/12 00:21:43 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef enum		e_types
 	unsgint = 'u',
 	exhlower = 'x',
 	exhupper = 'X',
-	percent = '%'
+	percent = '%',
 }					t_types;
 
 typedef enum		e_flags
@@ -36,15 +36,14 @@ typedef enum		e_flags
 	leffield = '-',
 	takearg = '*',
 	precision = '.',
-	plus = '+'
+	plus = '+',
+	space = ' '
 }					t_flags;
 
 typedef struct		s_datatype
 {
 	int				fzero;
 	int				fleffield;
-	int				ftakearglenght;
-	int				ftakeargprecission;
 	int				fprecision;
 	int				lenght_arg;
 	int				result;
@@ -55,9 +54,13 @@ typedef struct		s_datatype
 	int				datanbr;
 	int				fischar;
 	int				fplus;
+	int				fpointer;
+	int				fuint;
+	int				fspace;
+	int				fpercent;
 	unsigned int	dataunbr;
-	unsigned long	dataexh;
-	unsigned long	dataupexh;
+	unsigned int	dataexh;
+	unsigned int	dataupexh;
 	long			datapointer;
 	int				porcent;
 	char			*datastr;
@@ -92,14 +95,15 @@ char				*revert(char *ptr);
 char				*ft_atoa_lowexh(unsigned long nbr);
 char				*ft_atoa_upperexh(unsigned long nbr);
 int					ft_generallen(t_datatype *data);
-int					generalnbr(t_datatype *data);
+long				generalnbr(t_datatype *data);
 void				ft_printstr(t_datatype *data);
-void				ft_putgeneral(t_datatype *data, int negativesign);
+void				ft_putgeneral(t_datatype *data, int negativesign,
+						va_list ap);
 int					ft_intlen(long nbr);
 int					ft_uintlen(unsigned int nbr);
 void				print_spaces(t_datatype *data);
 void				print_zeros(t_datatype *data);
-void				ft_printfnbr(t_datatype *data);
+void				ft_printfnbr(t_datatype *data, va_list ap);
 void				calc_numspaces(t_datatype *data);
 void				do_num_dandi(t_datatype *data, va_list ap);
 void				do_num_u(t_datatype *data, va_list ap);
@@ -112,10 +116,12 @@ void				numspaces_pointer(t_datatype *data);
 void				calc_numspaces(t_datatype *data);
 void				do_str_str(t_datatype *data, va_list ap);
 int					do_str_type(t_datatype *data, va_list ap);
-void				ft_print_nzp(t_datatype *data);
-void				ft_print_znpl(t_datatype *data);
-void				ft_print_pvpla(t_datatype *data);
-void				ft_print_lvpp(t_datatype *data);
-void				ft_print_zl(t_datatype *data);
+void				ft_print_nzp(t_datatype *data, va_list ap);
+void				ft_print_znpl(t_datatype *data, va_list ap);
+void				ft_print_pvpla(t_datatype *data, va_list ap);
+void				ft_print_lvpp(t_datatype *data, va_list ap);
+void				ft_print_zl(t_datatype *data, va_list ap);
+void				ft_printchar(va_list ap);
+void				calc_spaces_fspc(t_datatype *data);
 
 #endif
