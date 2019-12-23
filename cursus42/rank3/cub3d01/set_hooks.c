@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 06:10:13 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/12/16 19:03:16 by acarvaja         ###   ########.fr       */
+/*   Updated: 2019/12/23 19:14:03 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static int	exit_hook(t_cb3d *c3d)
 {
 	mlx_destroy_window(c3d->mlx.init, c3d->mlx.win.w_ptr);
+	free(c3d->g_map);
+	free(c3d);
 	exit(0);
 }
 
@@ -26,6 +28,10 @@ static int	key_release_hook(int key, t_cb3d *c3d)
 		c3d->key.move_up = 0;
 	else if (key == KEY_S || key == KEY_DOWN)
 		c3d->key.move_down = 0;
+	else if (key == KEY_A)
+		c3d->key.move_left = 0;
+	else if (key == KEY_D)
+		c3d->key.move_right = 0;
 	else if (key == KEY_LEFT)
 		c3d->key.rotate_left = 0;
 	else if (key == KEY_RIGHT)
@@ -33,7 +39,7 @@ static int	key_release_hook(int key, t_cb3d *c3d)
 	return (0);
 }
 
-int	key_press_hook(int key, t_cb3d *c3d)
+int			key_press_hook(int key, t_cb3d *c3d)
 {
 	if (key == KEY_ESCAPE)
 		exit_hook(c3d);
@@ -41,6 +47,10 @@ int	key_press_hook(int key, t_cb3d *c3d)
 		c3d->key.move_up = 1;
 	else if (key == KEY_S || key == KEY_DOWN)
 		c3d->key.move_down = 1;
+	else if (key == KEY_A)
+		c3d->key.move_left = 1;
+	else if (key == KEY_D)
+		c3d->key.move_right = 1;
 	else if (key == KEY_LEFT)
 		c3d->key.rotate_left = 1;
 	else if (key == KEY_RIGHT)

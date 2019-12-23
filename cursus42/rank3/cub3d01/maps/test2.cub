@@ -1,0 +1,17 @@
+R 12800 7200
+NO ./textures/wood.xpm
+SO ./textures/mossy.xpm
+WE ./textures/redbrick.xpm
+EA ./textures/stone.xpm
+
+S ./textures/table.xpm
+F 0,0,0
+C 255,255,255
+
+1 1 1 1 1 1
+1 N 0 0 0 1
+1 0 0 0 0 1
+1 0 3 0 2 1
+1 0 0 1 1 1
+1 0 1 1 1 1
+1 1 1 1 1 1
