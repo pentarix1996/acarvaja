@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 18:06:55 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/12/23 18:34:06 by acarvaja         ###   ########.fr       */
+/*   Updated: 2019/12/23 20:50:36 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	init_player_data(t_cb3d *c3d)
 			if (c3d->g_map[j][k] == 'N' || c3d->g_map[j][k] == 'S'
 				|| c3d->g_map[j][k] == 'W' || c3d->g_map[j][k] == 'E')
 			{
+				init_player_pos(c3d, j, k);
 				c3d->player.pos.x = j;
 				c3d->player.pos.y = k;
 				flag = 1;
@@ -97,5 +98,4 @@ void	init_player_data(t_cb3d *c3d)
 		}
 		j++;
 	}
-	init_player_pos(c3d, j, k);
 }
