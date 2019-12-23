@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 18:06:55 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/12/23 20:50:36 by acarvaja         ###   ########.fr       */
+/*   Updated: 2019/12/23 21:31:11 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,12 @@ void	init_player_pos(t_cb3d *c3d, int j, int k)
 		c3d->camera.plane.x = -0.66;
 		c3d->camera.plane.y = 0;
 		c3d->player.dir.x = 0;
+		c3d->player.dir.y = -1;
 	}
 	else if (c3d->g_map[j][k] == 'E')
 	{
 		c3d->camera.plane.y = 0;
+		c3d->camera.plane.x = -0.66;
 		c3d->player.dir.x = 0;
 		c3d->player.dir.y = 1;
 	}
