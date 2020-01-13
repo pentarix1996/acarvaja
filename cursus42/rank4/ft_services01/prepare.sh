@@ -1,0 +1,8 @@
+export KUB_IP=$(minikube ip)
+export WP_POD=$(kubectl get pods | grep wordpress | cut -d" " -f1)
+echo "curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar" | (kubectl exec $WP_POD -it /bin/sh)
+echo "chmod +x wp-cli.phar" | (kubectl exec $WP_POD -it /bin/sh)
+echo "mv wp-cli.phar /usr/local/bin/wp" | (kubectl exec $WP_POD -it /bin/sh)
+echo "wp core install --path=/var/www/html --url=$KUB_IP:5050 --title="WP-CLI" --admin_user=root --admin_password=password --admin_email=info@wp-cli.org --allow-root"| (kubectl exec $WP_POD -it /bin/sh)
+echo "wp user create user1 user1@example.com --user_pass=password --role=author --allow-root"| (kubectl exec $WP_POD -it /bin/sh)
+echo "wp user create user2 user2@example.com --user_pass=password --role=author --allow-root"| (kubectl exec $WP_POD -it /bin/sh)
