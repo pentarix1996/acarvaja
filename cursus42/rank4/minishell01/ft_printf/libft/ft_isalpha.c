@@ -5,22 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 16:39:03 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/08 11:47:04 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/11/05 10:22:19 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2020/02/12 20:28:48 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_islower(int c)
-{
-	return (c >= 'a' && c <= 'z');
-}
+#include "libft.h"
 
-static int	ft_isupper(int c)
+int		ft_isalpha(int asc)
 {
-	return (c >= 'A' && c <= 'Z');
-}
-
-int			ft_isalpha(int c)
-{
-	return (ft_isupper(c) || ft_islower(c) ? 1 : 0);
+	return ((asc >= 'A' && asc <= 'Z') || (asc >= 'a' && asc <= 'z') ||
+		(asc >= -82 && asc <= -57) || (asc <= -42 && asc >= -17));
 }

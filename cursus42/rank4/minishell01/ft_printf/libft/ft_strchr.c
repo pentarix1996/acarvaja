@@ -3,35 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 12:15:23 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/13 10:14:48 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/11/05 11:30:34 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2020/02/14 15:08:31 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-static size_t	ft_strlen(const char *s)
+char	*ft_strchr(const char *s, int c)
 {
-	int tam;
+	unsigned int	pos;
 
-	tam = 0;
-	while (*s++)
-		tam++;
-	return (tam);
-}
-
-char			*ft_strchr(const char *s, int c)
-{
-	int i;
-
-	i = ft_strlen(s);
-	while (i-- >= 0)
+	c = (unsigned char)c;
+	pos = 0;
+	if (!s || !c)
+		return (NULL);
+	while (s[pos])
 	{
-		if (*s == (unsigned char)c)
-			return ((char *)s);
-		s++;
+		if (s[pos] == c)
+			return ((char *)&s[pos]);
+		pos++;
 	}
-	return (0);
+	return (NULL);
 }

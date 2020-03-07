@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 13:14:13 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/13 13:37:54 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/09/11 16:41:29 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2019/11/10 19:32:18 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
-size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	int	c;
+	unsigned int	pos;
 
-	if (!(dst && src))
-		return (0);
-	c = ft_strlen(src);
-	while (dstsize > 1 && *src)
+	if (!dest)
+		return (size);
+	if (size > 0)
 	{
-		*dst++ = *src++;
-		dstsize--;
+		pos = 0;
+		while (pos < size - 1 && src[pos] != 0)
+		{
+			dest[pos] = src[pos];
+			pos++;
+		}
+		dest[pos] = '\0';
 	}
-	if (dstsize > 0)
-		*dst = '\0';
-	return (c);
+	return (ft_strlen(src));
 }

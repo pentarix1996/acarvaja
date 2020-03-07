@@ -3,29 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 14:29:31 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/15 17:20:26 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/11/06 09:52:30 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2019/11/12 15:33:03 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "libft.h"
 
-char		*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
-	char *ptr;
+	char				*sub_str;
 
-	if (!s)
-		return (0);
-	if (ft_strlen(s) < start)
-		return ((char *)ft_calloc(start * sizeof(char), len));
-	s += start;
-	ptr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!ptr)
-		return (0);
-	ft_strlcpy(ptr, s, len + 1);
-	return (ptr);
+	if (str)
+	{
+		if (!(sub_str = (char *)malloc(sizeof(char) * (len + 1))))
+			return (NULL);
+		ft_bzero(sub_str, len + 1);
+		if (start < ft_strlen(str))
+			ft_strlcpy(sub_str, str + start, len + 1);
+		return (sub_str);
+	}
+	return (NULL);
 }

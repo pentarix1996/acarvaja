@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/15 13:31:59 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/15 13:35:30 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/11/09 14:04:45 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2019/11/12 15:23:27 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
+	t_list	*aux;
+
 	if (lst && f)
 	{
-		ft_lstiter(lst->next, f);
-		(*f)(lst->content);
+		aux = lst;
+		while (aux)
+		{
+			f(aux->content);
+			aux = aux->next;
+		}
 	}
 }

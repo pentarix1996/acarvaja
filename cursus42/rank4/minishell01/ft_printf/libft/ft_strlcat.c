@@ -3,50 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 13:47:23 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/13 09:44:05 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/09/16 12:40:54 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2019/11/09 17:25:58 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-static size_t	ft_strlen(const char *s)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	int tam;
+	unsigned int		posd;
+	unsigned int		poss;
 
-	tam = 0;
-	while (*s++)
-		tam++;
-	return (tam);
-}
-
-size_t			ft_strlcat(char *dst, const char *src, size_t dstsize)
-{
-	char		*ptrdst;
-	const char	*ptrsrc;
-	size_t		n;
-	size_t		dlen;
-
-	ptrdst = dst;
-	n = dstsize;
-	ptrsrc = src;
-	while (n-- && *ptrdst)
-		ptrdst++;
-	dlen = ptrdst - dst;
-	n = dstsize - dlen;
-	if (n == 0)
-		return (dlen + ft_strlen(ptrsrc));
-	while (*ptrsrc)
+	posd = 0;
+	poss = 0;
+	while (dst[posd] != 0 && posd < dstsize)
+		posd++;
+	if (dst[posd] == 0)
 	{
-		if (n != 1)
+		while (poss + posd < (dstsize - 1) && src[poss] != '\0')
 		{
-			*ptrdst++ = *ptrsrc;
-			n--;
+			dst[posd + poss] = src[poss];
+			poss++;
 		}
-		ptrsrc++;
+		dst[posd + poss] = '\0';
 	}
-	*ptrdst = '\0';
-	return (dlen + (ptrsrc - src));
+	while (src[poss] != '\0')
+		poss++;
+	return (posd + poss);
 }

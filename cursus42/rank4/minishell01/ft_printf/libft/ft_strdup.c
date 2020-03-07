@@ -3,38 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 15:03:45 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/18 19:09:26 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/09/20 10:29:48 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2020/02/20 19:18:18 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "libft.h"
 
-static char	*ft_strcpy(char *dest, const char *src)
+char	*ft_strdup(const char *src)
 {
-	int	i;
+	char	*dest;
 
-	i = 0;
-	while (src[i] != '\0')
+	if (!src)
+		return (NULL);
+	else
 	{
-		dest[i] = src[i];
-		i++;
+		if (!(dest = malloc(ft_strlen(src) + 1)))
+			return (NULL);
+		ft_strcpy(dest, src);
 	}
-	dest[i] = '\0';
 	return (dest);
-}
-
-char		*ft_strdup(const char *s1)
-{
-	char	*copy;
-
-	copy = (char *)malloc(sizeof(*copy) * (ft_strlen(s1) + 1));
-	if (!copy)
-		return (0);
-	ft_strcpy(copy, s1);
-	return (copy);
 }

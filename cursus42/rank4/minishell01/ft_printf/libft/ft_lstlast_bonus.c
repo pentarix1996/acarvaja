@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/15 13:10:12 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/15 14:46:27 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/11/09 13:02:00 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2019/11/12 15:29:13 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (lst)
-	{
-		while (lst->next)
-			lst = lst->next;
-	}
-	return (lst);
+	t_list	*aux;
+
+	if (!lst)
+		return (NULL);
+	aux = lst;
+	while (aux->next)
+		aux = aux->next;
+	return (aux);
 }

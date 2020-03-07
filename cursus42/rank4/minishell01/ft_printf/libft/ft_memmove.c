@@ -3,35 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/04 13:44:36 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/08 12:37:47 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/11/04 19:17:40 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2019/11/10 17:23:33 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char		*ptrdst;
-	const unsigned char	*ptrsrc;
+	char				*d;
+	const	char		*s;
+	char				*max_d;
+	char				*max_s;
 
-	ptrdst = dst;
-	ptrsrc = src;
-	if (!dst && !src)
-		return (NULL);
-	if (ptrsrc + len > ptrdst && src < dst)
+	if (dst || src)
 	{
-		ptrsrc += len - 1;
-		ptrdst += len - 1;
-		while (len-- > 0)
-			*ptrdst-- = *ptrsrc--;
+		d = dst;
+		s = src;
+		max_d = d + (len - 1);
+		max_s = (char *)s + (len - 1);
+		if (d < s)
+		{
+			while (len-- > 0)
+				*d++ = *s++;
+		}
+		else
+		{
+			while (len-- > 0)
+				*max_d-- = *max_s--;
+		}
+		return (dst);
 	}
-	else
-	{
-		while (len-- > 0)
-			*ptrdst++ = *ptrsrc++;
-	}
-	return (dst);
+	return (NULL);
 }

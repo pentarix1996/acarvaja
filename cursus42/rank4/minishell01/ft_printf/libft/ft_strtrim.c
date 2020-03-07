@@ -3,77 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 17:54:47 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/15 17:16:03 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/11/06 11:32:30 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2019/11/12 16:38:55 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-static int	ft_lefttrim(char const *s1, char const *set)
+static size_t	ft_start(char const *str, char const *set)
 {
-	int i;
-	int j;
+	size_t		start;
 
-	j = 0;
-	while (*s1)
-	{
-		i = 0;
-		while (set[i] != '\0')
-		{
-			if (set[i] == *s1)
-				break ;
-			i++;
-		}
-		if (i < (int)ft_strlen(set))
-			j++;
-		else
-			break ;
-		s1++;
-	}
-	return (j);
+	start = 0;
+	while (*(str + start) != 0 && ft_strchr(set, (int)*(str + start)))
+		start++;
+	return (start);
 }
 
-static int	ft_rightrim(char const *s1, char const *set)
+static size_t	ft_end(char const *str, char const *set, size_t start)
 {
-	int i;
-	int j;
-	int cont;
+	size_t	end;
 
-	j = 0;
-	i = ft_strlen(s1) - 1;
-	cont = ft_strlen(s1);
-	while (i >= 0)
-	{
-		j = 0;
-		while (set[j] != '\0')
-		{
-			if (set[j] == s1[i])
-				break ;
-			j++;
-		}
-		if (j < (int)ft_strlen(set))
-			cont--;
-		else
-			break ;
-		i--;
-	}
-	return (cont);
+	end = ft_strlen(str);
+	while (end > start && ft_strchr(set, (int)*(str + end)))
+		end--;
+	return (end);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char			*ft_strtrim(char const *str, char const *set)
 {
-	char	*ptr;
-	int		size;
+	char		*trim;
+	size_t		start;
+	size_t		end;
+	int			pos;
 
-	if (!s1)
-		return (0);
-	if (ft_rightrim(s1, set) == 0)
-		return (ft_strdup(""));
-	size = ft_rightrim(s1, set) - ft_lefttrim(s1, set);
-	ptr = ft_substr(s1, ft_lefttrim(s1, set), size);
-	return (ptr);
+	if (!str)
+		return (NULL);
+	start = ft_start(str, set);
+	end = ft_end(str, set, start);
+	if (!end)
+	{
+		trim = malloc(1);
+		*trim = 0;
+		return (trim);
+	}
+	if (!(trim = (char *)malloc(sizeof(char) * (end - start + 2))))
+		return (NULL);
+	pos = 0;
+	while (start++ <= end)
+	{
+		*(trim + pos) = *(str + start - 1);
+		pos++;
+	}
+	*(trim + pos) = 0;
+	return (trim);
 }

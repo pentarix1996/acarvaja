@@ -3,80 +3,100 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/13 09:46:24 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/13 13:55:29 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/11/06 20:14:06 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2020/02/05 17:49:15 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
-static char	**ft_createtab(char const *s, char c)
+static int		count_word(char const *str, char c)
 {
-	int		i;
-	int		count;
+	int		word;
 
-	i = 0;
-	count = 0;
-	while (s[i])
+	word = 0;
+	while (*str)
 	{
-		if (s[i] != c)
+		while (*str && (*str == c))
+			str++;
+		if (*str && *str != c)
 		{
-			count++;
-			while (s[i] != c && s[i + 1] != '\0')
-				i++;
-		}
-		i++;
-	}
-	return ((char **)malloc(sizeof(char *) * (count + 1)));
-}
-
-static char	*ft_returnstr(char *tmp, char c)
-{
-	int	i;
-
-	i = 0;
-	while (tmp[i])
-	{
-		if (tmp[i] == c)
-			tmp[i] = '\0';
-		i++;
-	}
-	return (tmp);
-}
-
-static void	ft_putnull(int i[3])
-{
-	i[0] = 0;
-	i[1] = 0;
-}
-
-char		**ft_split(char const *s, char c)
-{
-	char	**result;
-	char	*tmp;
-	int		i[3];
-
-	if (s == 0)
-		return (0);
-	tmp = ft_strdup(s);
-	i[2] = ft_strlen(s);
-	if (!(result = ft_createtab(s, c)))
-		return (0);
-	tmp = ft_returnstr(tmp, c);
-	ft_putnull(i);
-	while (i[0] < i[2])
-	{
-		if (!tmp[i[0]])
-			i[0]++;
-		else
-		{
-			result[i[1]++] = ft_strdup(&tmp[i[0]]);
-			i[0] += ft_strlen(&tmp[i[0]]);
+			word++;
+			while (*str && *str != c)
+				str++;
 		}
 	}
-	result[i[1]] = 0;
-	return (result);
+	return (word);
+}
+
+static int		size(char const *str, char c, size_t pos)
+{
+	int		size;
+
+	size = 0;
+	while (*(str + pos) != c && *(str + pos) != 0)
+	{
+		size++;
+		pos++;
+	}
+	return (size);
+}
+
+static char		*fill(char *word, char const *str, char c, size_t pos)
+{
+	size_t	let;
+
+	let = 0;
+	while (*(str + pos) != 0 && *(str + pos) != c)
+	{
+		*(word + let) = *(str + pos);
+		let++;
+		pos++;
+	}
+	*(word + let) = 0;
+	return (word);
+}
+
+static char		**allocation(char **split, char c, char const *str, size_t pos)
+{
+	size_t	let;
+	size_t	start;
+	int		word;
+
+	start = pos;
+	word = 0;
+	while (*(str + start) != 0)
+	{
+		let = size(str, c, pos);
+		if (0 == (*(split + word) = (char *)malloc(sizeof(char) * (let + 1))))
+			return (NULL);
+		*(split + word) = fill(*(split + word), str, c, pos);
+		word++;
+		start += let;
+		while (*(str + start) == c && *(str + start) != 0)
+			start++;
+		pos = start;
+	}
+	*(split + word) = NULL;
+	return (split);
+}
+
+char			**ft_split(char const *str, char c)
+{
+	size_t	pos;
+	int		word;
+	char	**split;
+
+	if (!str)
+		return (NULL);
+	word = count_word(str, c);
+	if (NULL == (split = (char **)malloc(sizeof(char *) * (word + 1))))
+		return (0);
+	pos = 0;
+	while (*(str + pos) == c && *(str + pos))
+		pos++;
+	allocation(split, c, str, pos);
+	return (split);
 }

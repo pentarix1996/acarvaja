@@ -6,7 +6,7 @@
 /*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 11:20:56 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/12/04 19:33:27 by acarvaja         ###   ########.fr       */
+/*   Updated: 2020/02/12 19:34:49 by acarvaja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		is_correct_type(char type)
 		return (-1);
 	while (*aux_list != '\0')
 	{
-		if (type == *aux_list)
+		if (type == (char)*aux_list)
 			break ;
 		aux_list++;
 	}

@@ -3,26 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/12 16:54:10 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/12 17:54:12 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/11/06 10:13:28 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2019/11/12 15:53:46 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *str, char const *ptr)
 {
-	char	*ptr;
+	char	*new;
+	int		s;
+	int		p;
 
-	if (!(s1 && s2))
-		return (0);
-	ptr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!ptr)
-		return (0);
-	ft_strlcpy(ptr, s1, ft_strlen(s1) + 1);
-	ft_strlcat(ptr, s2, ft_strlen(s1) + ft_strlen(s2) + 1);
-	return (ptr);
+	if (!str)
+		return (NULL);
+	s = ft_strlen(str);
+	p = ft_strlen(ptr);
+	if (!(new = (char *)malloc(sizeof(char) * (s + p + 1))))
+		return (NULL);
+	s = 0;
+	while (*(str + s))
+	{
+		*(new + s) = *(str + s);
+		s++;
+	}
+	p = 0;
+	while (*(ptr + p))
+	{
+		*(new + s + p) = *(ptr + p);
+		p++;
+	}
+	*(new + s + p) = 0;
+	return (new);
 }

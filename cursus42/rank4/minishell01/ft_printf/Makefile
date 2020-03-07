@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+         #
+#    By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 10:44:50 by acarvaja          #+#    #+#              #
-#    Updated: 2019/12/10 12:29:58 by acarvaja         ###   ########.fr        #
+#    Updated: 2020/02/05 18:53:12 by cmunoz-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCSLIB		= $(LIBFT)ft_isalnum.c $(LIBFT)ft_isalpha.c $(LIBFT)ft_isascii.c $(LIBF
               $(LIBFT)ft_strncmp.c $(LIBFT)ft_strnstr.c $(LIBFT)ft_strrchr.c $(LIBFT)ft_tolower.c $(LIBFT)ft_toupper.c \
               $(LIBFT)ft_atoi.c $(LIBFT)ft_bzero.c $(LIBFT)ft_calloc.c $(LIBFT)ft_strdup.c $(LIBFT)ft_substr.c $(LIBFT)ft_strjoin.c \
 			  $(LIBFT)ft_strtrim.c $(LIBFT)ft_split.c $(LIBFT)ft_itoa.c $(LIBFT)ft_strmapi.c $(LIBFT)ft_putchar_fd.c \
-			  $(LIBFT)ft_putstr_fd.c $(LIBFT)ft_putendl_fd.c $(LIBFT)ft_putnbr_fd.c
+			  $(LIBFT)ft_putstr_fd.c $(LIBFT)ft_putendl_fd.c $(LIBFT)ft_putnbr_fd.c $(LIBFT)ft_strcmp.c $(LIBFT)ft_split_inc.c
 SRCS		= ft_printf_utils.c ft_printf.c ft_inidata.c ft_printf_puts.c ft_printf_types.c ft_printf_exh.c \
 				ft_printf_generals.c ft_printf_print.c ft_printf_nbrs.c ft_printf_spaces.c ft_printf_str.c \
 				ft_printf_print_utils.c

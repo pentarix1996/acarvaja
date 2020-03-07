@@ -3,42 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/13 11:27:03 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/15 15:08:16 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/11/06 20:50:44 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2019/11/12 16:46:03 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
 
 char	*ft_itoa(int n)
 {
-	long	ncpy;
-	size_t	len;
-	char	*str;
+	int				digit;
+	unsigned int	x;
+	char			*number;
+	int				size;
 
-	ncpy = n;
-	len = (ncpy > 0) ? 0 : 1;
-	ncpy = (ncpy > 0) ? ncpy : -ncpy;
-	while (n)
+	x = n < 0 ? -n : n;
+	digit = n <= 0 ? 1 : 0;
+	while (x > 0)
 	{
-		n /= 10;
-		len++;
+		digit++;
+		x = x / 10;
 	}
-	if (!(str = (char *)malloc(sizeof(*str) * (len + 1))))
-		return (0);
-	*(str + len--) = '\0';
-	while (ncpy > 0)
+	size = digit;
+	if (!(number = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
+	x = n < 0 ? -n : n;
+	*number = n < 0 ? '-' : 0;
+	while (digit-- > 0 && *(number + digit) != '-')
 	{
-		*(str + len--) = ncpy % 10 + '0';
-		ncpy /= 10;
+		*(number + digit) = x % 10 + '0';
+		x = x / 10;
 	}
-	if (len == 0 && str[1] == '\0')
-		*(str + len) = '0';
-	if (len == 0 && str[1] != '\0')
-		*(str + len) = '-';
-	return (str);
+	*(number + size) = 0;
+	return (number);
 }

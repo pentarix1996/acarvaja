@@ -3,30 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarvaja <acarvaja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmunoz-r <cmunoz-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 14:25:29 by acarvaja          #+#    #+#             */
-/*   Updated: 2019/11/12 16:41:11 by acarvaja         ###   ########.fr       */
+/*   Created: 2019/09/17 17:03:32 by cmunoz-r          #+#    #+#             */
+/*   Updated: 2019/11/10 17:59:01 by cmunoz-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
-{
-	int		sign;
-	long	result;
+#include "libft.h"
 
-	result = 0;
-	sign = 1;
-	while (*str == 32 || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
+static int		intconv(const char *str, int pos, int cminus)
+{
+	unsigned int	number;
+
+	number = 0;
+	while (str[pos] > 47 && str[pos] < 58)
 	{
-		sign = -1;
-		str++;
+		if ((number == 214748364 && cminus == 0 && str[pos] > '7') ||
+			(number > 214748364 && cminus == 0))
+			return (-1);
+		else if ((number == 214748364 && cminus == 1 && str[pos] > '8') ||
+				(number > 214748364 && cminus == 1))
+			return (0);
+		number = number * 10 + (str[pos] - '0');
+		pos++;
 	}
-	if (*str == '+' && sign == 1)
-		str++;
-	while (*str >= '0' && *str <= '9')
-		result = result * 10 + *str++ - '0';
-	return ((int)sign * result);
+	if (cminus % 2 != 0)
+		number = number * (-1);
+	return ((int)number);
+}
+
+int				ft_atoi(const char *str)
+{
+	unsigned int	pos;
+	int				cminus;
+
+	pos = 0;
+	while (str[pos] == 32 || str[pos] == '\t' || str[pos] == '\n' ||
+				str[pos] == '\v' || str[pos] == '\f' || str[pos] == '\r')
+		pos++;
+	cminus = 0;
+	if (str[pos] == 43 || str[pos] == 45)
+	{
+		if (str[pos] == 45)
+			cminus++;
+		pos++;
+	}
+	return (intconv(str, pos, cminus));
 }
